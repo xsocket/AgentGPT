@@ -104,12 +104,36 @@ const Home: NextPage = () => {
   };
 
   const disableDeployAgent =
-    agent != null || isEmptyOrBlank(nameInput) || isEmptyOrBlank(goalInput);
+    agent != null 
+      // || isEmptyOrBlank(nameInput) 
+      || isEmptyOrBlank(goalInput);
 
+      /** 自由定义 name */
+  const dxmFilterAgentName = (name: string, goal: string) => {
+    if(name && name.trim() !== "") {
+      return name;
+    } else {
+      let idx = goal.indexOf("：");
+      if(idx > 0) {
+        return goal.substring(0, idx);
+      } else {
+        idx = goal.indexOf(":");
+        if(idx > 0) {
+          return goal.substring(0, idx);
+        } else {
+          return "任务(" + new Date().toLocaleDateString() + ")"
+        }
+      }
+    }
+  }
+  
   const handleNewGoal = (name: string, goal: string) => {
-    if (name.trim() === "" || goal.trim() === "") {
+    if (goal.trim() === "") {
       return;
     }
+    
+    /** 自由定义 name */
+    name = dxmFilterAgentName(name, goal);
 
     // Do not force login locally for people that don't have auth setup
     if (session === null && env.NEXT_PUBLIC_FORCE_AUTH) {
@@ -271,7 +295,7 @@ const Home: NextPage = () => {
                         setHasSaved(true);
                         agentUtils.saveAgent({
                           goal: goalInput.trim(),
-                          name: nameInput.trim(),
+                          name: dxmFilterAgentName(nameInput.trim(), goalInput.trim()),
                           tasks: messages,
                         });
                       }
