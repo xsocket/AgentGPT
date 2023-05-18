@@ -32,7 +32,8 @@ export const options = (
     adapter,
     providers: [
       Credentials({
-        name: "Username, Development Only (Insecure)",
+        //name: "Username, Development Only (Insecure)",
+        name: "Username",
         credentials: {
           name: {label: "Username", type: "text"},
         },

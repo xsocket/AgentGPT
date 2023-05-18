@@ -9,7 +9,7 @@ export default function HelpDialog({ show, close }: { show: boolean; close: () =
     <Dialog header={`${t("WELCOME_TO_AGENT_GPT", { ns: "help" })} 🤖`} isShown={show} close={close}>
       <div>
         <p>
-          <strong>AgentGPT</strong> {t("INTRODUCING_AGENTGPT", { ns: "help" })}
+          <strong>AIGC探索星球</strong> {t("INTRODUCING_AGENTGPT", { ns: "help" })}
         </p>
         <br />
         <div>
@@ -17,6 +17,7 @@ export default function HelpDialog({ show, close }: { show: boolean; close: () =
             ns: "help",
           })}
           <a
+            target="_blank"
             href="https://docs.reworkd.ai"
             className="text-sky-500"
           >
@@ -26,28 +27,11 @@ export default function HelpDialog({ show, close }: { show: boolean; close: () =
         <br />
         <p className="mt-2">{t("FOLLOW_THE_JOURNEY", { ns: "help" })}</p>
         <div className="mt-4 flex w-full items-center justify-center gap-5">
-          <div
-            className="cursor-pointer rounded-full bg-black/30 p-3 hover:bg-black/70"
-            onClick={() => window.open("https://discord.gg/jdSBAnmdnY", "_blank")}
+          <div className="cursor-pointer rounded-full p-3 "
+            
+            onClick={() => window.open("https://www.duxiaoman.com/", "_blank")}
           >
-            <FaDiscord size={30} />
-          </div>
-          <div
-            className="cursor-pointer rounded-full bg-black/30 p-3 hover:bg-black/70"
-            onClick={() =>
-              window.open(
-                "https://twitter.com/asimdotshrestha/status/1644883727707959296",
-                "_blank"
-              )
-            }
-          >
-            <FaTwitter size={30} />
-          </div>
-          <div
-            className="cursor-pointer rounded-full bg-black/30 p-3 hover:bg-black/70"
-            onClick={() => window.open("https://github.com/reworkd/AgentGPT", "_blank")}
-          >
-            <FaGithub size={30} />
+            <img src="dxm/logo-color.png" style={{"height":"32px"}}/>
           </div>
         </div>
       </div>

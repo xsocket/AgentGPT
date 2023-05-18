@@ -24,7 +24,7 @@ const commonOptions: Partial<AuthOptions> & { adapter: Adapter } = {
   },
   theme: {
     colorScheme: "dark",
-    logo: "https://agentgpt.reworkd.ai/logo-white.svg",
+    logo: "../../dxm/logo-full.svg",
   },
 }
 export const authOptions = (req: NextApiRequest | IncomingMessage, res: NextApiResponse | ServerResponse) => {

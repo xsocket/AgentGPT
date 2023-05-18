@@ -203,20 +203,24 @@ const Home: NextPage = () => {
       />
       <SorryDialog show={showSorryDialog} close={() => setShowSorryDialog(false)} />
       <SignInDialog show={showSignInDialog} close={() => setShowSignInDialog(false)} />
+
       <main className="flex min-h-screen flex-row">
+        <div className="dxm-title-bar"> <img src="dxm/logo-full.svg" style={{"height":"30px"}} /></div>
+
         <Drawer
           showHelp={() => setShowHelpDialog(true)}
           showSettings={() => setShowSettingsDialog(true)}
         />
         <div
           id="content"
-          className="z-10 flex min-h-screen w-full items-center justify-center p-2 sm:px-4 md:px-10"
+          className="dxm-content z-10 flex min-h-screen w-full items-center justify-center p-2 sm:px-4 md:px-10"
         >
           <div
             id="layout"
             className="flex h-full w-full max-w-screen-xl flex-col items-center justify-between gap-1 py-2 sm:gap-3 sm:py-5 md:justify-center"
           >
-            <div id="title" className="relative flex flex-col items-center font-mono">
+
+            {/* dxm: <div id="title" className="relative flex flex-col items-center font-mono">
               <div className="flex flex-row items-start shadow-2xl">
                 <span className="text-4xl font-bold text-[#C0C0C0] xs:text-5xl sm:text-6xl">
                   Agent
@@ -238,7 +242,7 @@ const Home: NextPage = () => {
                   })}
                 </p>
               </div>
-            </div>
+            </div> 
 
             <div>
               <Button
@@ -255,11 +259,12 @@ const Home: NextPage = () => {
               >
                 Tasks
               </Button>
-            </div>
-            <Expand className="flex w-full flex-row">
+            </div>*/}
+            
+            <Expand className="dxm-chat-wrapper flex w-full flex-row">
               <ChatWindow
                 messages={messages}
-                title="AgentGPT"
+                title="AIGC探索星球"
                 onSave={
                   shouldShowSave
                     ? (format) => {
@@ -278,39 +283,12 @@ const Home: NextPage = () => {
                 setAgentRun={setAgentRun}
                 visibleOnMobile={mobileVisibleWindow === "Chat"}
               />
-              <TaskWindow visibleOnMobile={mobileVisibleWindow === "Tasks"} />
+              {/* <TaskWindow visibleOnMobile={mobileVisibleWindow === "Tasks"} /> */}
             </Expand>
 
-            <div className="flex w-full flex-col gap-2 md:m-4 ">
-              <Expand delay={1.2}>
+            <div className="flex w-full flex-row gap-2 md:m-4 ">
+              <Expand delay={1.3} className="flex-grow">
                 <Input
-                  inputRef={nameInputRef}
-                  left={
-                    <>
-                      <FaRobot />
-                      <span className="ml-2">{`${i18n?.t("AGENT_NAME", {
-                        ns: "indexPage",
-                      })}`}</span>
-                    </>
-                  }
-                  value={nameInput}
-                  disabled={agent != null}
-                  onChange={(e) => setNameInput(e.target.value)}
-                  onKeyDown={(e) => handleKeyPress(e)}
-                  placeholder="AgentGPT"
-                  type="text"
-                />
-              </Expand>
-              <Expand delay={1.3}>
-                <Input
-                  left={
-                    <>
-                      <FaStar />
-                      <span className="ml-2">{`${i18n?.t("LABEL_AGENT_GOAL", {
-                        ns: "indexPage",
-                      })}`}</span>
-                    </>
-                  }
                   disabled={agent != null}
                   value={goalInput}
                   onChange={(e) => setGoalInput(e.target.value)}
@@ -321,28 +299,29 @@ const Home: NextPage = () => {
                   type="textarea"
                 />
               </Expand>
-            </div>
-            <Expand delay={1.4} className="flex gap-2">
-              {firstButton}
-              <Button
-                disabled={agent === null}
-                onClick={handleStopAgent}
-                enabledClassName={"bg-red-600 hover:bg-red-400"}
-              >
-                {!isAgentStopped && agent === null ? (
-                  <>
-                    <VscLoading className="animate-spin" size={20} />
-                    <span className="ml-2">{`${i18n?.t("BUTTON_STOPPING", {
+              <Expand delay={1.4} className="flex gap-2">
+                {firstButton}
+                <Button
+                  disabled={agent === null}
+                  onClick={handleStopAgent}
+                  enabledClassName={"dxm-show bg-red-600 hover:bg-red-400"}
+                  className="dxm-hide "
+                >
+                  {!isAgentStopped && agent === null ? (
+                    <>
+                      <VscLoading className="animate-spin" size={20} />
+                      <span className="ml-2">{`${i18n?.t("BUTTON_STOPPING", {
+                        ns: "indexPage",
+                      })}`}</span>
+                    </>
+                  ) : (
+                    `${i18n?.t("BUTTON_STOP_AGENT", "BUTTON_STOP_AGENT", {
                       ns: "indexPage",
-                    })}`}</span>
-                  </>
-                ) : (
-                  `${i18n?.t("BUTTON_STOP_AGENT", "BUTTON_STOP_AGENT", {
-                    ns: "indexPage",
-                  })}`
-                )}
-              </Button>
-            </Expand>
+                    })}`
+                  )}
+                </Button>
+              </Expand>
+            </div>
           </div>
         </div>
       </main>

@@ -42,7 +42,7 @@ const AgentPage: NextPage = () => {
 
   return (
     <DefaultLayout
-      className="flex w-full flex-col items-center justify-center gap-4 p-2 sm:p-4"
+      className="flex w-full flex-col items-center justify-center gap-4 "
       centered
     >
       <ChatWindow
@@ -52,9 +52,9 @@ const AgentPage: NextPage = () => {
         fullscreen
         visibleOnMobile
       />
-      <div className="flex flex-row gap-2">
+      <div className="flex flex-row gap-6">
         <Button icon={<FaBackspace />} onClick={() => void router.push("/")}>
-          Back
+          返回
         </Button>
         <Button
           icon={<FaTrash />}
@@ -63,7 +63,7 @@ const AgentPage: NextPage = () => {
           }}
           enabledClassName={"bg-red-600 hover:bg-red-400"}
         >
-          Delete
+          删除
         </Button>
 
         <Button
@@ -73,7 +73,7 @@ const AgentPage: NextPage = () => {
           }}
           enabledClassName={"bg-green-600 hover:bg-green-400"}
         >
-          Share
+          分享
         </Button>
       </div>
       <Toast

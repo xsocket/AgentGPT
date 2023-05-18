@@ -93,6 +93,7 @@ const Drawer = ({
               <FaBars />
             </button>
           </div>
+          <FadingHr className="my-2" />
           <ul className="flex flex-col gap-2 overflow-auto">
             {userAgents.map((agent, index) => (
                 <DrawerItem
@@ -125,6 +126,9 @@ const Drawer = ({
         </div>
 
         <div className="flex flex-col gap-1">
+          <div className="dxm-logo">
+            <img src="dxm/logo-white.png" style={{"height":"24px","margin":"auto"}} />
+          </div>
           <FadingHr className="my-2" />
           <AuthItem session={session} signIn={signIn} signOut={signOut} />
           <DrawerItem
@@ -132,57 +136,6 @@ const Drawer = ({
             text={t("HELP_BUTTON")}
             onClick={showHelp}
           />
-          <DrawerItem
-            icon={<FaHeart />}
-            text={t("SUPPORT_BUTTON")}
-            onClick={handleSupport}
-          />
-          <DrawerItem
-            icon={
-              <FaCog className="transition-transform group-hover:rotate-90" />
-            }
-            text={t("SETTINGS_BUTTON")}
-            onClick={showSettings}
-          />
-          <FadingHr className="my-2" />
-          <div className="flex flex-row items-center">
-            <DrawerItem
-              icon={
-                <FaDiscord
-                  size={30}
-                  className="transition-colors group-hover:fill-current group-hover:text-indigo-400"
-                />
-              }
-              text="Discord"
-              href="https://discord.gg/jdSBAnmdnY"
-              target="_blank"
-              small
-            />
-            <DrawerItem
-              icon={
-                <FaTwitter
-                  size={30}
-                  className="transition-colors group-hover:fill-current group-hover:text-sky-500"
-                />
-              }
-              text="Twitter"
-              href="https://twitter.com/asimdotshrestha/status/1644883727707959296"
-              target="_blank"
-              small
-            />
-            <DrawerItem
-              icon={
-                <FaGithub
-                  size={30}
-                  className="transition-colors group-hover:fill-current group-hover:text-purple-500"
-                />
-              }
-              text="GitHub"
-              href="https://github.com/reworkd/AgentGPT"
-              target="_blank"
-              small
-            />
-          </div>
         </div>
       </div>
     </>

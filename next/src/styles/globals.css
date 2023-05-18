@@ -46,6 +46,7 @@ pre {
 
 .window-heights {
   @apply h-[14em] overflow-y-auto overflow-x-hidden sm-h:h-[17em] md-h:h-[22em] lg-h:h-[30em];
+  flex: 1;
 }
 
 .link {
@@ -106,4 +107,51 @@ div::-webkit-scrollbar-button {
   to {
     opacity: 0;
   }
+}
+
+.dxm-title-bar {
+  position:fixed;
+  width: 100%;
+  height: 50px;
+  background-color: #3B95E5;
+  padding: 10px;
+  text-align: right;
+}
+.dxm-title-bar img {
+  display:inline;
+}
+
+.dxm-content {
+  padding-top: 50px;
+}
+
+/* chat window parent */
+.dxm-chat-wrapper {
+  flex: 1;
+}
+.dxm-message-wrapper {
+  margin-bottom: 1rem;
+}
+.dxm-message {
+  margin: 0 70px 0 50px !important;
+}
+
+.dxm-message.dxm-message-goal {
+  margin: 0 50px 0 70px !important;
+}
+
+.dxm-avatar {
+  float:left; margin:5px;
+}
+
+.dxm-avatar.dxm-avatar1 {
+  float:right;
+}
+
+.dxm-hide {
+  display: none !important;
+}
+
+.dxm-show {
+  display: block !important;
 }

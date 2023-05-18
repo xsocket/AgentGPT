@@ -24,7 +24,7 @@ import {
   TASK_STATUS_STARTED,
 } from "../types/agentTypes";
 import clsx from "clsx";
-import { getMessageContainerStyle, getTaskStatusIcon } from "./utils/helpers";
+import { getMessageContainerStyle, getTaskStatusIcon, getMessageAvatar } from "./utils/helpers";
 import { useAgentStore } from "../stores";
 import { AnimatePresence } from "framer-motion";
 import { CgExport } from "react-icons/cg";
@@ -105,7 +105,7 @@ const ChatWindow = ({
   return (
     <div
       className={clsx(
-        "border-translucent w-full flex-col rounded-2xl border-2 border-white/20 bg-zinc-900 text-white shadow-2xl drop-shadow-lg xl:flex",
+        "dxm-chat-window border-translucent w-full flex-col text-white  xl:flex",
         className,
         visibleOnMobile ? "flex" : "hidden"
       )}
@@ -113,7 +113,8 @@ const ChatWindow = ({
       <MacWindowHeader title={title} messages={messages} onSave={onSave} />
       <div
         className={clsx(
-          "mb-2 mr-2 ",
+          //"mb-2 mr-2 ",
+          "dxm-message-list ",
           (fullscreen && "max-h-[75vh] flex-grow overflow-auto") || "window-heights"
         )}
         ref={scrollRef}
@@ -151,21 +152,21 @@ const ChatWindow = ({
             </PopIn>
             <PopIn delay={1.5}>
               <div className="m-2 flex flex-col justify-between gap-2 sm:m-4 sm:flex-row">
-                <ExampleAgentButton name="PlatformerGPT 🎮" setAgentRun={setAgentRun}>
-                  Write some code to make a platformer game.
+                <ExampleAgentButton name="行业专家GPT" setAgentRun={setAgentRun}>
+                  整理一份比亚迪在新能源领域的行业报告
                 </ExampleAgentButton>
-                <ExampleAgentButton name="TravelGPT 🌴" setAgentRun={setAgentRun}>
-                  Plan a detailed trip to Hawaii.
+                <ExampleAgentButton name="旅行规划GPT" setAgentRun={setAgentRun}>
+                  制定一个40人团队到杭州5日游的方案
                 </ExampleAgentButton>
-                <ExampleAgentButton name="ResearchGPT 📜" setAgentRun={setAgentRun}>
-                  Create a comprehensive report of the Nike company
+                <ExampleAgentButton name="投资顾问GPT" setAgentRun={setAgentRun}>
+                  整理一份100万人民币的投资计划
                 </ExampleAgentButton>
               </div>
             </PopIn>
           </>
         )}
       </div>
-      {displaySettings && (
+      {/* {displaySettings && (
         <div className="flex flex-row items-center justify-center">
           <SwitchContainer label="Web Search">
             <Switch
@@ -182,7 +183,7 @@ const ChatWindow = ({
             />
           </SwitchContainer>
         </div>
-      )}
+      )} */}
     </div>
   );
 };
@@ -212,11 +213,11 @@ const ExampleAgentButton = ({
   };
 
   return (
-    <div
+    <div style={{"borderStyle":"dotted"}}
       className={clsx(
         `w-full p-2 sm:w-[33%]`,
         `cursor-pointer rounded-lg bg-sky-600 font-mono text-sm hover:bg-sky-700 sm:text-base`,
-        `border-[2px] border-white/20 hover:border-[#1E88E5]/40`
+        `border-[2px] border-white/50 hover:border-[#1E88E5]/40`
       )}
       onClick={handleClick}
     >
@@ -321,7 +322,7 @@ const MacWindowHeader = (props: HeaderProps) => {
       </PopIn>
       <Expand
         delay={1}
-        className="invisible flex flex-grow font-mono text-sm font-bold text-gray-500 sm:ml-2 md:visible"
+        className=" flex flex-grow font-mono text-sm font-bold text-gray-500 sm:ml-2 "
       >
         {props.title}
       </Expand>
@@ -378,6 +379,7 @@ const ChatMessage = ({ message }: { message: Message }) => {
   const [t] = useTranslation();
 
   return (
+    <div className="dxm-message-wrapper">{getMessageAvatar(message)}
     <div
       className={`${getMessageContainerStyle(
         message
@@ -390,7 +392,6 @@ const ChatMessage = ({ message }: { message: Message }) => {
           <span className="mr-2 font-bold">{t(getMessagePrefix(message), { ns: "chat" })}</span>
         </>
       )}
-
       {message.type == MESSAGE_TYPE_THINKING && (
         <span className="italic text-zinc-400">
           {`${t("RESTART_IF_IT_TAKES_X_SEC", {
@@ -417,7 +418,7 @@ const ChatMessage = ({ message }: { message: Message }) => {
           }
         </>
       )}
-    </div>
+    </div></div>
   );
 };
 
@@ -430,7 +431,7 @@ const getMessagePrefix = (message: Message) => {
   } else if (getTaskStatus(message) === TASK_STATUS_STARTED) {
     return "TASK_ADDED";
   } else if (getTaskStatus(message) === TASK_STATUS_COMPLETED) {
-    return `Completing: ${message.value}`;
+    return `完成任务：${message.value}`;
   } else if (getTaskStatus(message) === TASK_STATUS_FINAL) {
     return "NO_MORE_TASKS";
   }

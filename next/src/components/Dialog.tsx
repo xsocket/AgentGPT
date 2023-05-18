@@ -36,7 +36,7 @@ const Dialog = ({
         >
           {/*header*/}
           <div className="flex items-start justify-between rounded-t border-b-2 border-solid border-white/20 p-5">
-            <h3 className="font-mono text-3xl font-semibold">{header}</h3>
+            <h3 className="font-mono text-2xl font-semibold">{header}</h3>
             <button className="float-right ml-auto border-0 bg-transparent p-1 text-3xl font-semibold leading-none opacity-5 outline-none focus:outline-none">
               <span className="block h-6 w-6 bg-transparent text-2xl opacity-5 outline-none focus:outline-none">
                 ×
