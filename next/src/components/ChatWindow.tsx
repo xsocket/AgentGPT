@@ -28,7 +28,7 @@ import { getMessageContainerStyle, getTaskStatusIcon, getMessageAvatar } from ".
 import { useAgentStore } from "../stores";
 import { AnimatePresence } from "framer-motion";
 import { CgExport } from "react-icons/cg";
-import MarkdownRenderer from "./MarkdownRenderer";
+import MarkdownRenderer from "./MarkdownRendererDxm";
 import { Switch } from "./Switch";
 import { env } from "../env/client.mjs";
 
